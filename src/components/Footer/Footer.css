@@ -1,0 +1,35 @@
+.footer {
+    background-color: #ececec;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image {
+    margin: 10px;
+}
+
+.card-image > img{
+    width: 4rem;
+}
+
+@media (max-width: 768px) {
+    .card-image > img {
+        width: 50px;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 425px) {
+    .card-image > img {
+        width: 30px;
+        object-fit: contain;
+    }
+}

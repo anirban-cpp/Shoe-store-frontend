@@ -1,0 +1,54 @@
+.Announcement {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 1rem;
+  font-size: 0.9rem;
+  background-color: #1cb803;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.contact-no {
+  flex: 0.3;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.contact-email {
+  flex: 0.5;
+}
+
+.social {
+  flex: 0.2;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.social > svg {
+  cursor: pointer;
+}
+
+@media (max-width: 972px) {
+    .contact-no {
+        flex: 0;
+        display: none;
+    }
+    .contact-email {
+        flex: 0;
+        display: none;
+    }
+    .social {
+        flex: 0.3;
+    }
+    .Announcement {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+  .social {
+    flex: 0.5;
+  }
+}

@@ -1,0 +1,182 @@
+import uspolo1 from "./assets/US.Polo/U.S.Polo.1.jpg";
+import uspolo2 from "./assets/US.Polo/U.S.Polo.2.jpg";
+import uspolo3 from "./assets/US.Polo/U.S.Polo.3.jpg";
+
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdLocationPin, MdMail } from "react-icons/md";
+
+import amex from "./assets/cards/amex.png";
+import discover from "./assets/cards/discover.png";
+import master from "./assets/cards/master.jpg";
+import paypal from "./assets/cards/paypal.png";
+import visa from "./assets/cards/visa.png";
+
+export const products = [
+  {
+    id: 1,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    status: "In stock",
+    new_price: 1949,
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 2,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    new_price: 1949,
+    status: "In stock",
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 3,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    status: "In stock",
+    new_price: 1949,
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 4,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    new_price: 1949,
+    status: "In stock",
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 5,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    new_price: 1949,
+    status: "In stock",
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 6,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    status: "In stock",
+    new_price: 1949,
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 7,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    new_price: 1949,
+    status: "In stock",
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 8,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    status: "In stock",
+    new_price: 1949,
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 9,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    new_price: 1949,
+    status: "In stock",
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 10,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    new_price: 1949,
+    old_price: 2999,
+    status: "In stock",
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 11,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    new_price: 1949,
+    status: "In stock",
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+  {
+    id: 12,
+    brand: "U.S. Polo Assn.",
+    title: "Men White & Grey Colourblocked Sneakers",
+    rating: 4,
+    reviews: 421,
+    status: "In stock",
+    new_price: 1949,
+    old_price: 2999,
+    discount: 35,
+    images: [uspolo1, uspolo2, uspolo3],
+  },
+];
+
+export const contacts = [
+  {
+    id: 1,
+    icon: <FaPhoneAlt size={26} />,
+    title: "Call us 24x7",
+    content: "7003 870 759",
+  },
+  {
+    id: 2,
+    icon: <MdLocationPin size={26} />,
+    title: "Headquaters",
+    content: "Kolkata",
+  },
+  {
+    id: 3,
+    icon: <MdMail size={26} />,
+    title: "Mail us",
+    content: "info@xyz.com",
+  },
+];
+
+export const cards = [master, visa, paypal, amex, discover];
