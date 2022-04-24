@@ -31,9 +31,9 @@
    padding-bottom: 2rem;
 }
 
-@media (max-width: 437px) {
+@media (max-width: 543px) {
    .show-more {
       width: auto;
-      font-size: 0.6rem;
+      font-size: 0.7rem;
    }
 }
