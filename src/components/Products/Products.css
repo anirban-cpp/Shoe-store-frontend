@@ -23,7 +23,6 @@
 }
 
 .products-container {
-   /* padding: 3rem;  */
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
@@ -35,6 +34,6 @@
 @media (max-width: 437px) {
    .show-more {
       width: auto;
-      font-size: 0.7rem;
+      font-size: 0.6rem;
    }
 }
