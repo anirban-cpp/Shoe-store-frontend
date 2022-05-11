@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import "../Auth.css";
+import { registerRequest } from "../../../Redux/Actions/UserActions";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const Register = () => {
-  window.scroll(0,0)
-  const location = useLocation();
-  // console.log(location);
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector((state) => state.user);
+  window.scroll(0, 0);
   const [formValue, setFormValue] = useState({
     name: "",
     email: "",
@@ -23,7 +26,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValue);
+    dispatch(registerRequest({ ...formValue }));
     setFormValue({
       ...formValue,
       name: "",
@@ -31,7 +34,17 @@ const Register = () => {
       password: "",
       confirmpassword: "",
     });
+
+    if (error) {
+      console.log(error);
+    }
   };
+
+  if (loading) return <Spinner loading={loading} />;
+
+  if(user){
+    return <Navigate to='/'/>
+  }
 
   return (
     <div className="auth">

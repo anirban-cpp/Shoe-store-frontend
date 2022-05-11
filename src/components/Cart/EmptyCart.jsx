@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const EmptyCart = () => {
+const EmptyCart = (props) => {
   const navigate = useNavigate();
 
   return (
@@ -9,8 +9,8 @@ const EmptyCart = () => {
       <br />
       <br />
       <div className="empty-cart-container">
-        <p>Your cart is empty</p>
-        <button onClick={() => navigate("/")}>Continue Shopping</button>
+        <p>{props.text}</p>
+        <button onClick={() => navigate(props.path)}>{props.btntext}</button>
       </div>
     </div>
   );

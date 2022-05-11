@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import "../Auth.css";
+import Spinner from "../../../components/Spinner/Spinner";
+import { loginRequest } from "../../../Redux/Actions/UserActions";
 
 const Login = () => {
-  window.scroll(0,0)
-  // const location = useLocation();
-  // console.log(location);
+  window.scroll(0, 0);
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector((state) => state.user);
   const [formValue, setFormValue] = useState({
     email: "",
     password: "",
@@ -21,8 +24,18 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(loginRequest({ ...formValue }));
+    if (error) {
+      console.log(error);
+    }
     setFormValue({ ...formValue, email: "", password: "" });
   };
+
+  if (loading) return <Spinner loading={loading} />;
+
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="auth">
@@ -42,7 +55,9 @@ const Login = () => {
             value={formValue.password}
             onChange={handleInput}
           />
-          <button>Login</button>
+          <button type="submit" onClick={handleSubmit}>
+            Login
+          </button>
         </form>
         <p className="others" onClick={() => navigate("/register")}>
           Create Account

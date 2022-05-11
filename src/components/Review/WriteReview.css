@@ -1,0 +1,43 @@
+.give-rating > p {
+  font-size: large;
+}
+
+.give-comment > p {
+  font-size: large;
+}
+
+.give-rating > select {
+  padding: 1rem;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 15px;
+  border: none;
+  background-color: rgb(244, 243, 243);
+}
+
+.give-rating > select > option {
+  background-color: white;
+  border: none;
+}
+
+.give-comment > textarea {
+    min-height: 5rem;
+  width: calc(100% - 3rem);
+  padding: 1.5rem;
+  outline: none;
+  border: none;
+  background-color: rgb(244, 243, 243);
+  font-size: 1rem;
+}
+
+.add-review-btn > button {
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: black;
+  font-size: medium;
+  cursor: pointer;
+}

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { products } from "../../Data";
+import { useDispatch, useSelector } from "react-redux";
 import { AiFillStar } from "react-icons/ai";
+import { getProductRequest } from "../../Redux/Actions/ProductActions";
 
 import "./ProductDetail.css";
 import Button from "../../components/Button/Button";
+import Spinner from "../../components/Spinner/Spinner";
+import WriteReview from "../../components/Review/WriteReview";
+// import { addToCart } from "../../Redux/Actions/CartActions";
 
 const Lorem =
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
@@ -28,7 +32,7 @@ const Review = ({ props }) => {
       <p>Rating</p>
       <p>
         {rating} <AiFillStar color="gold" stroke="yellow" size={15} /> |{" "}
-        {reviews} Reviews
+        {reviews.length} Reviews
       </p>
     </div>
   );
@@ -53,19 +57,43 @@ const ReviewContainer = (props) => {
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const productId = id;
 
-  const product = products.find((item) => item.id === Number(id));
+  const dispatch = useDispatch();
+  const { product, loading, error } = useSelector((state) => state.product);
+  const { user } = useSelector((state) => state.user);
 
   const [count, setCount] = useState(1);
 
   useEffect(() => {
     window.scroll(0, 0);
+    dispatch(getProductRequest(productId));
   }, []);
 
   const others = [
     { text: "Price", value: product.new_price },
-    { text: "Status", value: product.status },
+    {
+      text: "Status",
+      value: product.countInStock > 0 ? "In stock" : "Out of stock",
+    },
   ];
+
+  const handleCart = () => {
+    // dispatch(
+    //   addToCart({
+    //     id: product._id,
+    //     image: product.images[0],
+    //     brand: product.brand,
+    //     title: product.title,
+    //     price: product.new_price,
+    //     quantity: count,
+    //   })
+    // );
+  };
+
+  if (loading) return <Spinner loading={loading} />;
+
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="productDetail">
@@ -98,7 +126,9 @@ const ProductDetail = () => {
               />
             </div>
           </div>
-          <button className="add-to-cart">Add to cart</button>
+          <button className="add-to-cart" onClick={handleCart}>
+            Add to cart
+          </button>
         </div>
       </div>
       <div className="row2-detail">
@@ -118,15 +148,19 @@ const ProductDetail = () => {
         </div>
         <div className="row2-col2">
           <p className="review-title">Write a Customer review</p>
-          <div className="review-container">
-            <p>
-              Please{" "}
-              <strong>
-                " <Link to="/login">Login</Link> "
-              </strong>{" "}
-              to write a review
-            </p>
-          </div>
+          {user ? (
+            <WriteReview user={user} />
+          ) : (
+            <div className="review-container">
+              <p>
+                Please{" "}
+                <strong>
+                  " <Link to="/login">Login</Link> "
+                </strong>{" "}
+                to write a review
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
