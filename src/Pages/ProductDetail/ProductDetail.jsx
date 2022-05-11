@@ -8,7 +8,8 @@ import "./ProductDetail.css";
 import Button from "../../components/Button/Button";
 import Spinner from "../../components/Spinner/Spinner";
 import WriteReview from "../../components/Review/WriteReview";
-// import { addToCart } from "../../Redux/Actions/CartActions";
+import { addToCart } from "../../Redux/Actions/CartActions";
+import { toast } from "react-toastify";
 
 const Lorem =
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
@@ -79,16 +80,16 @@ const ProductDetail = () => {
   ];
 
   const handleCart = () => {
-    // dispatch(
-    //   addToCart({
-    //     id: product._id,
-    //     image: product.images[0],
-    //     brand: product.brand,
-    //     title: product.title,
-    //     price: product.new_price,
-    //     quantity: count,
-    //   })
-    // );
+    dispatch(
+      addToCart({
+        id: product._id,
+        image: product.images[0],
+        brand: product.brand,
+        title: product.title,
+        price: product.new_price,
+        quantity: count,
+      })
+    );
   };
 
   if (loading) return <Spinner loading={loading} />;

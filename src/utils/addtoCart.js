@@ -1,5 +1,4 @@
 const addItemToCart = (cartItems, cartItemToAdd) => {
-
   if (cartItems.length === 0) return [...cartItems, cartItemToAdd];
 
   const existingCartItem = cartItems.find(

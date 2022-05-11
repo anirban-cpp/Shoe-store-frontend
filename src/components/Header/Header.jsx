@@ -8,15 +8,17 @@ import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../Redux/Actions/UserActions";
+import { EmptyCart } from "../../Redux/Actions/CartActions";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const count = 0;
+  const { cartItems } = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(EmptyCart());
     navigate("/");
   };
 
@@ -40,7 +42,7 @@ const Header = () => {
           )}
           <div>
             <IoMdCart size={24} onClick={() => navigate("cart")} />
-            <span className="cart-count">{count}</span>
+            <span className="cart-count">{cartItems ? cartItems.length : 0}</span>
           </div>
         </div>
       </div>

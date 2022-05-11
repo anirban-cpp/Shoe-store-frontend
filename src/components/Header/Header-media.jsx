@@ -6,11 +6,22 @@ import { IoMdCart } from "react-icons/io";
 
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Redux/Actions/UserActions";
+import { EmptyCart } from "../../Redux/Actions/CartActions";
 
 const Headermedia = () => {
-  //   const [count, setCount] = useState(0);
   const count = 0;
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(EmptyCart());
+    navigate("/");
+  };
 
   return (
     <div className="header-media">
@@ -20,8 +31,18 @@ const Headermedia = () => {
             <img src={logo} alt="logo" onClick={() => navigate("/")} />
           </div>
           <div className="links">
-            <p onClick={() => navigate("register")}>REGISTER</p>
-            <p onClick={() => navigate("login")}>LOGIN</p>
+            {/* <p onClick={() => navigate("register")}>REGISTER</p>
+            <p onClick={() => navigate("login")}>LOGIN</p> */}
+            {user ? (
+              <p onClick={() => navigate("profile")}>PROFILE</p>
+            ) : (
+              <p onClick={() => navigate("register")}>REGISTER</p>
+            )}
+            {user ? (
+              <p onClick={handleLogout}>LOGOUT</p>
+            ) : (
+              <p onClick={() => navigate("login")}>LOGIN</p>
+            )}
             <div>
               <IoMdCart size={24} onClick={() => navigate("cart")} />
               <span className="cart-count">{count}</span>
