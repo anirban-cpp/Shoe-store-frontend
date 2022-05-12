@@ -12,7 +12,7 @@ export const contacts = [
     id: 1,
     icon: <FaPhoneAlt size={26} />,
     title: "Call us 24x7",
-    content: "7003 870 759",
+    content: "9804 158 828",
   },
   {
     id: 2,

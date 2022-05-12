@@ -12,7 +12,6 @@ const middleware = [sagaMiddleware];
 const persistConfig = {
   key: "persist-store",
   storage,
-  blacklist: ['cart']
 };
 
 const pReducer = persistReducer(persistConfig, rootReducer);

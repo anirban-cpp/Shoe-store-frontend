@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import "../Auth.css";
 import { registerRequest } from "../../../Redux/Actions/UserActions";
 import Spinner from "../../../components/Spinner/Spinner";
+import Validate from "../../../utils/Validate";
 import { toast } from "react-toastify";
 
 const Register = () => {
   const dispatch = useDispatch();
-  const { user, loading, error } = useSelector((state) => state.user);
+  const { user, loading } = useSelector((state) => state.user);
   window.scroll(0, 0);
   const [formValue, setFormValue] = useState({
     name: "",
@@ -27,19 +28,18 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerRequest({ ...formValue }));
-    setFormValue({
-      ...formValue,
-      name: "",
-      email: "",
-      password: "",
-      confirmpassword: "",
-    });
-
-    if (error.length > 0) {
-      toast.error(error + " 😓");
+    const validate = Validate(formValue);
+    if (validate.valid) {
+      dispatch(registerRequest({ ...formValue }));
+      setFormValue({
+        ...formValue,
+        name: "",
+        email: "",
+        password: "",
+        confirmpassword: "",
+      });
     } else {
-      toast.success("Successfully Registered 😄");
+      toast.error(validate.message);
     }
   };
 
@@ -57,7 +57,6 @@ const Register = () => {
             name="name"
             type="text"
             placeholder="Enter your name"
-            pattern="^[a-zA-Z ]+$"
             value={formValue.name}
             onChange={handleInput}
             required
@@ -75,7 +74,6 @@ const Register = () => {
             type="password"
             placeholder="password"
             value={formValue.password}
-            pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$"
             onChange={handleInput}
             required
           />
@@ -84,7 +82,6 @@ const Register = () => {
             type="password"
             placeholder="Confirm Password"
             value={formValue.confirmpassword}
-            pattern={formValue.password}
             onChange={handleInput}
             required
           />

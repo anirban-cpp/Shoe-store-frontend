@@ -6,7 +6,7 @@ import './Announcement.css';
 const Announcement = () => {
   return (
       <div className="Announcement">
-          <p className='contact-no'>+91 7003870759</p>
+          <p className='contact-no'>+91 9804158828</p>
           <p className='contact-email'>anirbanbanerjee844@gmail.com</p>
           <div className='social'>
               <ImFacebook/>

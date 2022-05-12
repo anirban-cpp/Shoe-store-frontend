@@ -1,4 +1,5 @@
 import { takeLatest, call, delay, put, fork } from "@redux-saga/core/effects";
+import { toast } from "react-toastify";
 import {
   getUserFailure,
   getUserSuccess,
@@ -10,7 +11,12 @@ import {
   updateUserSuccess,
 } from "../Actions/UserActions";
 import * as types from "../ActionTypes/UserActionTypes";
-import { LoginUserApi, RegisterUserApi, getUserApi, updateUserApi } from '../api/Usersapi';
+import {
+  LoginUserApi,
+  RegisterUserApi,
+  getUserApi,
+  updateUserApi,
+} from "../api/Usersapi";
 
 function* onUserLoginStartAsync(action) {
   try {
@@ -20,10 +26,12 @@ function* onUserLoginStartAsync(action) {
       if (userResponse.status === 200) {
         yield delay(500);
         yield put(loginSuccess(userResponse.data));
+        toast.success("Successfully Logged in 😄");
       }
     }
   } catch (e) {
     yield put(loginFailure(e.response.data));
+    toast.error(e.response.data + " 😓");
   }
 }
 
@@ -36,10 +44,12 @@ function* onUserRegisterStartAsync(action) {
       if (userResponse.status === 200) {
         yield delay(500);
         yield put(registerSuccess(userResponse.data));
+        toast.success("Successfully Registered 😄");
       }
     }
   } catch (e) {
     yield put(registerFailure(e.response.data));
+    toast.error(e.response.data + " 😓");
   }
 }
 
@@ -52,7 +62,7 @@ function* ongetUserStart(action) {
       yield put(getUserSuccess(userResponse.data));
     }
   } catch (e) {
-    yield put(getUserFailure(e.response.data));
+    yield put(getUserFailure(e.response.data + " 😓"));
   }
 }
 
@@ -61,14 +71,16 @@ function* onupdateUserStartAsync(action) {
   try {
     const response = yield call(updateUserApi, payload);
     if (response.status === 200) {
-      const updatedUser = yield call(getUserSuccess, response.data)
-      if(updatedUser.status === 200) {
+      const updatedUser = yield call(getUserSuccess, response.data);
+      if (updatedUser.status === 200) {
         yield delay(500);
         yield put(updateUserSuccess(updatedUser.data));
+        toast.success("Profile successfully updated 😄");
       }
     }
   } catch (e) {
     yield put(updateUserFailure(e.response.data));
+    toast.error(e.response.data + " 😓");
   }
 }
 

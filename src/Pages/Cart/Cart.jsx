@@ -9,8 +9,6 @@ const Cart = () => {
   const { user } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
 
-  // console.log(cartItems);
-
   if (cartItems?.length === 0) {
     if (user) {
       return (
