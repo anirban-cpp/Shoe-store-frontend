@@ -11,11 +11,11 @@ import { logout } from "../../Redux/Actions/UserActions";
 import { EmptyCart } from "../../Redux/Actions/CartActions";
 
 const Headermedia = () => {
-  const count = 0;
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -45,7 +45,7 @@ const Headermedia = () => {
             )}
             <div>
               <IoMdCart size={24} onClick={() => navigate("cart")} />
-              <span className="cart-count">{count}</span>
+              <span className="cart-count">{cartItems ? cartItems.length : 0}</span>
             </div>
           </div>
         </div>

@@ -3,8 +3,9 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { addToCart, clearCart, removeFromCart } from "../../Redux/Actions/CartActions";
+import CartItemMedia from "./CartItemMedia";
 
-const Button = ({ props }) => {
+export const Button = ({ props }) => {
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
@@ -53,6 +54,7 @@ const CartItem = ({ props }) => {
           fontWeight="bold"
         />
       </div>
+      <CartItemMedia props={props}/>
       <div className="cart-item-img">
         <img src={props.image} alt={props.title} />
       </div>

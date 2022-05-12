@@ -3,7 +3,6 @@ import React from "react";
 import './Button.css';
 
 const Button = ({count, increment, decrement}) => {
-    
     return (
     <div className="cart-button">
       <div onClick={decrement}>
