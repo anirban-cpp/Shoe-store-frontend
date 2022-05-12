@@ -79,7 +79,14 @@
   color: white;
   background-color: black;
   font-size: medium;
+  font-weight: bold;
   cursor: pointer;
+  transition: all linear 300ms;
+}
+
+.add-to-cart:hover {
+  border: 1px solid #1cb803;
+  background-color: #1cb803;
 }
 
 .row2-detail {
@@ -171,8 +178,6 @@
   .row1-col1 > img {
     width: 40%;
   }
-
-  
 }
 
 @media (max-width: 894px) {
@@ -181,7 +186,7 @@
   }
 
   .row2-col1 {
-      margin-left: 0;
+    margin-left: 0;
     flex-direction: column;
     width: 100%;
   }
@@ -199,42 +204,42 @@
 }
 
 @media (max-width: 600px) {
-    .row1-col2 > h1 {
-        font-size: 1.5rem;
-    }
+  .row1-col2 > h1 {
+    font-size: 1.5rem;
+  }
 
-    .row1-col2 > h3 {
-        font-size: 1rem;
-    }
+  .row1-col2 > h3 {
+    font-size: 1rem;
+  }
 
-    .row1-col2-desc {
-        font-size: 0.7rem;
-    }
+  .row1-col2-desc {
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 430px) {
-    .other-details > div {
-        font-size: 0.7rem;
-    }
+  .other-details > div {
+    font-size: 0.7rem;
+  }
 
-    .reviews-container > p {
-        font-size: 0.7rem;
-    }
+  .reviews-container > p {
+    font-size: 0.7rem;
+  }
 
-    .reviews-comment {
-        font-size: 0.8rem;
-        padding: 0.2rem;
-    }
+  .reviews-comment {
+    font-size: 0.8rem;
+    padding: 0.2rem;
+  }
 
-    .row2-col2 > p {
-        font-size: 1rem;
-    }
+  .row2-col2 > p {
+    font-size: 1rem;
+  }
 
-    .review-container > p {
-        font-size: 0.6rem;
-    }
+  .review-container > p {
+    font-size: 0.6rem;
+  }
 
-    .row1-col1 > img {
-        width: 60%;
-    }
+  .row1-col1 > img {
+    width: 60%;
+  }
 }

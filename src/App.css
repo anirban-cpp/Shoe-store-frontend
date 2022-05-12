@@ -11,6 +11,12 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* React Toastify */
+
+.Toastify__toast--success, .Toastify__toast--error {
+  font-size: 1rem !important;
+}
+
 /* Spinner */
 
 .MuiCircularProgress-root {

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../Auth.css";
 import { registerRequest } from "../../../Redux/Actions/UserActions";
 import Spinner from "../../../components/Spinner/Spinner";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -35,15 +36,17 @@ const Register = () => {
       confirmpassword: "",
     });
 
-    if (error) {
-      console.log(error);
+    if (error.length > 0) {
+      toast.error(error + " 😓");
+    } else {
+      toast.success("Successfully Registered 😄");
     }
   };
 
   if (loading) return <Spinner loading={loading} />;
 
-  if(user){
-    return <Navigate to='/'/>
+  if (user) {
+    return <Navigate to="/" />;
   }
 
   return (

@@ -90,6 +90,7 @@ const ProductDetail = () => {
         quantity: count,
       })
     );
+    toast.success("Item added to cart");
   };
 
   if (loading) return <Spinner loading={loading} />;

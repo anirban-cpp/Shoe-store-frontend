@@ -1,6 +1,7 @@
 import React from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { addToCart, clearCart, removeFromCart } from "../../Redux/Actions/CartActions";
 
 const Button = ({ props }) => {
@@ -41,7 +42,10 @@ const CartItem = ({ props }) => {
 
   return (
     <div className="cart-items-row-1">
-      <div className="close-btn" onClick={() => dispatch(clearCart(props.id))}>
+      <div className="close-btn" onClick={() => {
+          dispatch(clearCart(props.id))
+          toast.success("Item removed from cart");
+        }}>
         <AiFillCloseCircle
           size={24}
           fill="red"

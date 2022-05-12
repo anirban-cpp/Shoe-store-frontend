@@ -8,16 +8,17 @@ import Cart from "./Pages/Cart/Cart";
 import Home from "./Pages/Home";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Profile from "./Pages/Profile/Profile";
 import Headermedia from "./components/Header/Header-media";
 
 function App() {
   return (
     <div className="App">
-      <ToastContainer theme="colored" />
+      <ToastContainer theme="light" />
       <Announcement />
       <Header />
-      <Headermedia/>
+      <Headermedia />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

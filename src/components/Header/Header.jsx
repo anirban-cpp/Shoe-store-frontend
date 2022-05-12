@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../Redux/Actions/UserActions";
 import { EmptyCart } from "../../Redux/Actions/CartActions";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Header = () => {
     dispatch(logout());
     dispatch(EmptyCart());
     navigate("/");
+    toast.success("Logged out ✌️");
   };
 
   return (
