@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import userImg from "../../assets/user-img.png";
 import Spinner from "../../components/Spinner/Spinner";
@@ -9,6 +10,7 @@ import {
   updateUserRequest,
 } from "../../Redux/Actions/UserActions";
 import getDate from "../../utils/getDate";
+import Validate from "../../utils/Validate";
 
 import "./Profile.css";
 
@@ -44,32 +46,38 @@ const Profile = () => {
     name: user?.name || "",
     email: user?.email || "",
     password: "",
-    confirmPassword: "",
+    confirmpassword: "",
   });
 
   const handleSubmit = () => {
     if (
       inputValue.name.trim() !== user.name ||
       inputValue.email.trim() !== user.email ||
-      inputValue.password.trim() !== ""
+      inputValue.password.trim().length > 0
     ) {
-      if (inputValue.password.trim() !== "") {
-        dispatch(
-          updateUserRequest({
-            id: user._id,
-            name: inputValue.name,
-            email: inputValue.email,
-            password: inputValue.password,
-          })
-        );
+      const isValid = Validate({ ...inputValue });
+      if (isValid.valid) {
+        if (inputValue.password.trim() !== "") {
+          dispatch(
+            updateUserRequest({
+              id: user._id,
+              name: inputValue.name,
+              email: inputValue.email,
+              password: inputValue.password,
+            })
+          );
+        } else {
+          dispatch(
+            updateUserRequest({
+              id: user._id,
+              name: inputValue.name,
+              email: inputValue.email,
+            })
+          );
+        }
+        dispatch(getUserRequest(user._id));
       } else {
-        dispatch(
-          updateUserRequest({
-            id: user._id,
-            name: inputValue.name,
-            email: inputValue.email,
-          })
-        );
+        toast.error(isValid.message);
       }
     }
   };
@@ -139,11 +147,11 @@ const Profile = () => {
               <label>Confirm Password</label>
               <input
                 type="password"
-                value={inputValue.confirmPassword}
+                value={inputValue.confirmpassword}
                 onChange={(e) =>
                   setInputValue({
                     ...inputValue,
-                    confirmPassword: e.target.value,
+                    confirmpassword: e.target.value,
                   })
                 }
                 pattern={inputValue.password}

@@ -71,12 +71,9 @@ function* onupdateUserStartAsync(action) {
   try {
     const response = yield call(updateUserApi, payload);
     if (response.status === 200) {
-      const updatedUser = yield call(getUserSuccess, response.data);
-      if (updatedUser.status === 200) {
-        yield delay(500);
-        yield put(updateUserSuccess(updatedUser.data));
-        toast.success("Profile successfully updated 😄");
-      }
+      yield delay(500);
+      yield put(updateUserSuccess(response.data));
+      toast.success("Profile successfully updated 😄");
     }
   } catch (e) {
     yield put(updateUserFailure(e.response.data));

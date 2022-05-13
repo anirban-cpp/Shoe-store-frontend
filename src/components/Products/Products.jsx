@@ -10,7 +10,7 @@ import {
 
 const Products = ({ keyword }) => {
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector(
+  const { products, loading } = useSelector(
     (state) => state.productList
   );
 
@@ -24,12 +24,10 @@ const Products = ({ keyword }) => {
 
   if (loading) return <Spinner loading={loading} />;
 
-  if (error) return <div>{error}</div>;
-
   return (
     <div className="products">
       <div className="products-container">
-        {products.map((product) => (
+        {products?.map((product) => (
           <Product key={product.id} {...product} />
         ))}
       </div>
