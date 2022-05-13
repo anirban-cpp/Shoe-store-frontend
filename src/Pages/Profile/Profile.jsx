@@ -31,17 +31,13 @@ const InputRow = (props) => {
 
 const Profile = () => {
   window.scroll(0, 0);
-  const [joinDate, setjoinDate] = useState(null);
   const [active, setActive] = useState(true);
   const dispatch = useDispatch();
   const { user, loading } = useSelector((state) => state.user);
+  const date = getDate(user.createdAt);
 
   useEffect(() => {
     dispatch(getUserRequest(user._id));
-    if (user) {
-      const date = getDate(user.createdAt);
-      setjoinDate(date);
-    }
   }, []);
 
   const [inputValue, setInputValue] = useState({
@@ -99,7 +95,7 @@ const Profile = () => {
                 <p>
                   <strong>{user?.name}</strong>
                 </p>
-                <p>Joined {joinDate}</p>
+                <p>Joined {date}</p>
               </div>
             </div>
           </div>

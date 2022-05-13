@@ -39,18 +39,31 @@
   display: none;
 }
 
-.search > input {
-  padding: 14px;
-  width: 60%;
+.input-container {
+  width: 70%;
   border: 0.5px solid lightgray;
-  font-size: 1rem;
-  outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   transition: outline .15s ease-in-out,box-shadow .15s ease-in-out;
+  padding-right: 10px;
 }
 
-.search > input:focus {
-  outline: 1px solid #1cb803;
+.input-container > input {
+  padding: 14px;
+  width: 95%;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.input-container:focus-within {
+  border: 1px solid #1cb803;
   box-shadow: -3px 1px 47px -18px rgba(28,184,3,0.7);
+}
+
+.input-container > svg:hover {
+  cursor: pointer;
 }
 
 .search > button {

@@ -3,6 +3,9 @@ import {
   PRODUCT_LIST_FAILURE,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
+  PRODUCT_QUERY_FAILURE,
+  PRODUCT_QUERY_REQUEST,
+  PRODUCT_QUERY_SUCCESS,
   PRODUCT_REQUEST,
   PRODUCT_SUCCESS,
 } from "../ActionTypes/ProductActionTypes";
@@ -34,7 +37,7 @@ export const getProductListFailure = (error) => {
 export const getProductRequest = (productId) => {
   return {
     type: PRODUCT_REQUEST,
-    payload: productId
+    payload: productId,
   };
 };
 
@@ -48,6 +51,29 @@ export const getProductSuccess = (product) => {
 export const getProductFailure = (error) => {
   return {
     type: PRODUCT_FAILURE,
+    payload: error,
+  };
+};
+
+// Queried products
+
+export const getqueriedProductRequest = (query) => {
+  return {
+    type: PRODUCT_QUERY_REQUEST,
+    payload: query,
+  };
+};
+
+export const getqueriedProductSuccess = (products) => {
+  return {
+    type: PRODUCT_QUERY_SUCCESS,
+    payload: products,
+  };
+};
+
+export const getqueriedProductFailure = (error) => {
+  return {
+    type: PRODUCT_QUERY_FAILURE,
     payload: error,
   };
 };

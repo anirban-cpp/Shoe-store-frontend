@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Product from "../Product/Product";
 import Spinner from "../Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import "./Products.css";
-import { getProductListRequest } from "../../Redux/Actions/ProductActions";
+import {
+  getProductListRequest,
+  getqueriedProductRequest,
+} from "../../Redux/Actions/ProductActions";
 
-const Products = () => {
-  const [productList, setProductList] = useState([]);
-
+const Products = ({ keyword }) => {
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector(
     (state) => state.productList
   );
 
   useEffect(() => {
-    dispatch(getProductListRequest());
-    if (products) {
-      setProductList(products.filter((product) => product.id <= 12));
+    if (keyword && keyword.trim().length > 0) {
+      dispatch(getqueriedProductRequest(keyword));
+    } else {
+      dispatch(getProductListRequest());
     }
-  }, []);
+  }, [keyword, dispatch]);
 
   if (loading) return <Spinner loading={loading} />;
 
@@ -27,7 +29,7 @@ const Products = () => {
   return (
     <div className="products">
       <div className="products-container">
-        {productList.map((product) => (
+        {products.map((product) => (
           <Product key={product.id} {...product} />
         ))}
       </div>

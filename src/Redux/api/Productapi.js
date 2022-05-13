@@ -5,3 +5,6 @@ export const loadProductsApi = async () =>
 
 export const loadProductApi = async (productId) =>
   axios.get(`http://localhost:1000/api/products/${productId}`);
+
+export const loadQueriedProductsApi = async (keyword) =>
+  axios.get(`http://localhost:1000/api/products/?keyword=${keyword}`);

@@ -21,6 +21,7 @@ function App() {
       <Headermedia />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search/:keyword" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />

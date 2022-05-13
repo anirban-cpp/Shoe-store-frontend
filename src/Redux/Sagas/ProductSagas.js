@@ -4,9 +4,15 @@ import {
   getProductListFailure,
   getProductListSuccess,
   getProductSuccess,
+  getqueriedProductFailure,
+  getqueriedProductSuccess,
 } from "../Actions/ProductActions";
 import * as types from "../ActionTypes/ProductActionTypes";
-import { loadProductApi, loadProductsApi } from "../api/Productapi";
+import {
+  loadProductApi,
+  loadProductsApi,
+  loadQueriedProductsApi,
+} from "../api/Productapi";
 
 function* onLoadProductsAsync() {
   try {
@@ -21,7 +27,7 @@ function* onLoadProductsAsync() {
 }
 
 function* onLoadProductAsync(action) {
-  const productId = action.payload
+  const productId = action.payload;
   try {
     const response = yield call(loadProductApi, productId);
     if (response.status === 200) {
@@ -33,6 +39,19 @@ function* onLoadProductAsync(action) {
   }
 }
 
+function* onQueryProductAsync(action) {
+  const keyword = action.payload;
+  try {
+    const response = yield call(loadQueriedProductsApi, keyword);
+    if (response.status === 200) {
+      yield delay(500);
+      yield put(getqueriedProductSuccess(response.data));
+    }
+  } catch (e) {
+    yield put(getqueriedProductFailure(e.response.data));
+  }
+}
+
 function* onLoadProducts() {
   yield takeLatest(types.PRODUCT_LIST_REQUEST, onLoadProductsAsync);
 }
@@ -41,4 +60,12 @@ function* onLoadProduct() {
   yield takeLatest(types.PRODUCT_REQUEST, onLoadProductAsync);
 }
 
-export const productSagas = [fork(onLoadProducts), fork(onLoadProduct)];
+function* onQueryProduct() {
+  yield takeLatest(types.PRODUCT_QUERY_REQUEST, onQueryProductAsync);
+}
+
+export const productSagas = [
+  fork(onLoadProducts),
+  fork(onLoadProduct),
+  fork(onQueryProduct),
+];

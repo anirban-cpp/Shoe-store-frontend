@@ -1,15 +1,35 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
+import { MdClear } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
-  const inputRef = useRef();
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search/${query.trim()}`);
+    } else {
+      navigate("/");
+    }
   };
 
   return (
     <form className="search" onSubmit={handleSubmit}>
-      <input ref={inputRef} type="text" placeholder="Search..." />
+      <div className="input-container">
+        <input
+          value={query}
+          type="text"
+          placeholder="Enter brand name..."
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        {query.length > 0 ? (
+          <MdClear size={16} onClick={() => setQuery("")} />
+        ) : (
+          <></>
+        )}
+      </div>
       <button type="submit" onClick={handleSubmit}>
         Search
       </button>
