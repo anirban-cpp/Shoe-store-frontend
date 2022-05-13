@@ -12,7 +12,7 @@ const Product = (props) => {
     <div className="product">
       <div
         className="product-container"
-        onClick={() => navigate(`product/${props._id}`)}
+        onClick={() => navigate(`/product/${props._id}`)}
       >
         <div className="product-image">
           <img src={props.images[0]} alt="" />
