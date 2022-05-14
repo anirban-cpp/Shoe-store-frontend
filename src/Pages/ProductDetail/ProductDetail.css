@@ -147,12 +147,17 @@
 }
 
 .reviews-comment {
-  padding: 0.5rem;
+  padding: 1rem;
   width: calc(100%-1rem);
   background-color: #cff4fc;
   font-size: 1rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
+}
+
+.reviews-comment > p {
+  line-height: 1.7;
+  margin: 0;
 }
 
 @media (max-width: 1200px) {
@@ -211,12 +216,6 @@
   }
 }
 
-@media (max-width: 546px) {
-  .row1-col2-desc > p {
-    font-size: 1rem;
-  }
-}
-
 @media (max-width: 600px) {
   .row1-col2 > h1 {
     font-size: 1.5rem;
@@ -229,6 +228,10 @@
   .row1-col2-desc {
     font-size: 0.7rem;
   }
+
+  .reviews-comment > p {
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 430px) {
@@ -238,11 +241,6 @@
 
   .reviews-container > p {
     font-size: 0.7rem;
-  }
-
-  .reviews-comment {
-    font-size: 0.8rem;
-    padding: 0.2rem;
   }
 
   .row2-col2 > p {
