@@ -29,6 +29,7 @@
    justify-content: center;
    max-width: 1320px;
    padding-bottom: 2rem;
+   transition: all linear 250ms;
 }
 
 @media (max-width: 543px) {

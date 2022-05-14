@@ -12,6 +12,7 @@ const middleware = [sagaMiddleware];
 const persistConfig = {
   key: "persist-store",
   storage,
+  blacklist: ["paginatedproduct"],
 };
 
 const pReducer = persistReducer(persistConfig, rootReducer);

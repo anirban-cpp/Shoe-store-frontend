@@ -13,6 +13,7 @@ const Search = () => {
     } else {
       navigate("/");
     }
+    setQuery("");
   };
 
   return (
