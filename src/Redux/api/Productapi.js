@@ -11,3 +11,14 @@ export const loadQueriedProductsApi = async (keyword) =>
 
 export const loadPaginatedProductsApi = async (page) =>
   axios.get(`http://localhost:1000/api/products/paginated?page=${page}`);
+
+export const addProductReviewApi = async (review) =>
+  axios.post(
+    `http://localhost:1000/api/products/${review.id.toString()}/review`,
+    {
+      name: review.name,
+      userId: review.userId,
+      rating: review.rating,
+      comment: review.comment,
+    }
+  );

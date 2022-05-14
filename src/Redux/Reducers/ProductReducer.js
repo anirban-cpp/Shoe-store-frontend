@@ -1,4 +1,7 @@
 import {
+  ADD_PRODUCT_REVIEW_FAILURE,
+  ADD_PRODUCT_REVIEW_REQUEST,
+  ADD_PRODUCT_REVIEW_SUCCESS,
   PRODUCT_FAILURE,
   PRODUCT_LIST_FAILURE,
   PRODUCT_LIST_REQUEST,
@@ -63,6 +66,31 @@ export const productRequest = (state = initialState, action) => {
         loading: false,
       };
     case PRODUCT_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+
+// Product Review
+
+export const productReview = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_PRODUCT_REVIEW_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ADD_PRODUCT_REVIEW_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case ADD_PRODUCT_REVIEW_FAILURE:
       return {
         ...state,
         error: action.payload,

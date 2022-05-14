@@ -1,14 +1,19 @@
 import { takeLatest, call, delay, put, fork } from "@redux-saga/core/effects";
+import { toast } from "react-toastify";
 import {
+  addProductreviewFailure,
+  addProductreviewSuccess,
   getProductFailure,
   getProductListFailure,
   getProductListSuccess,
+  getProductRequest,
   getProductSuccess,
   getqueriedProductFailure,
   getqueriedProductSuccess,
 } from "../Actions/ProductActions";
 import * as types from "../ActionTypes/ProductActionTypes";
 import {
+  addProductReviewApi,
   loadProductApi,
   loadProductsApi,
   loadQueriedProductsApi,
@@ -33,6 +38,7 @@ function* onLoadProductAsync(action) {
     if (response.status === 200) {
       yield delay(500);
       yield put(getProductSuccess(response.data));
+      console.log("success product fetch");
     }
   } catch (e) {
     yield put(getProductFailure(e.response.data));
@@ -52,6 +58,27 @@ function* onQueryProductAsync(action) {
   }
 }
 
+function* onAddReviewAsync(action) {
+  const review = action.payload;
+  try {
+    const response = yield call(addProductReviewApi, review);
+    if (response.status === 201) {
+      yield delay(500);
+      yield put(addProductreviewSuccess());
+      yield put(getProductRequest(review.id));
+      console.log("Success review");
+      toast.success("Review added");
+    } else {
+      yield delay(500);
+      yield put(addProductreviewFailure(response.data.toString()));
+      toast.success("Review added");
+    }
+  } catch (err) {
+    yield put(addProductreviewFailure(err.response.data));
+    toast.error(err.response.data);
+  }
+}
+
 function* onLoadProducts() {
   yield takeLatest(types.PRODUCT_LIST_REQUEST, onLoadProductsAsync);
 }
@@ -64,8 +91,13 @@ function* onQueryProduct() {
   yield takeLatest(types.PRODUCT_QUERY_REQUEST, onQueryProductAsync);
 }
 
+function* onAddReview() {
+  yield takeLatest(types.ADD_PRODUCT_REVIEW_REQUEST, onAddReviewAsync);
+}
+
 export const productSagas = [
   fork(onLoadProducts),
   fork(onLoadProduct),
   fork(onQueryProduct),
+  fork(onAddReview),
 ];

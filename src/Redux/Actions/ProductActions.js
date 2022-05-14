@@ -1,4 +1,7 @@
 import {
+  ADD_PRODUCT_REVIEW_FAILURE,
+  ADD_PRODUCT_REVIEW_REQUEST,
+  ADD_PRODUCT_REVIEW_SUCCESS,
   PRODUCT_FAILURE,
   PRODUCT_LIST_FAILURE,
   PRODUCT_LIST_REQUEST,
@@ -74,6 +77,28 @@ export const getqueriedProductSuccess = (products) => {
 export const getqueriedProductFailure = (error) => {
   return {
     type: PRODUCT_QUERY_FAILURE,
+    payload: error,
+  };
+};
+
+//product review
+
+export const addProductreviewRequest = (review) => {
+  return {
+    type: ADD_PRODUCT_REVIEW_REQUEST,
+    payload: review,
+  };
+};
+
+export const addProductreviewSuccess = () => {
+  return {
+    type: ADD_PRODUCT_REVIEW_SUCCESS,
+  };
+};
+
+export const addProductreviewFailure = (error) => {
+  return {
+    type: ADD_PRODUCT_REVIEW_FAILURE,
     payload: error,
   };
 };

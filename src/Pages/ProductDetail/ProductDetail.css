@@ -1,4 +1,5 @@
-.row1-detail, .row2-detail {
+.row1-detail,
+.row2-detail {
   padding: 70px;
   display: flex;
   justify-content: space-between;
@@ -96,7 +97,6 @@
   width: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .row2-col2 {
@@ -108,6 +108,15 @@
 
 .review-title {
   font-size: 1.5rem;
+  padding-bottom: 1em;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 0;
+}
+
+.NoReview {
+  font-size: 1rem;
+  color: gray;
+  line-height: 2rem;
 }
 
 .review-container {
@@ -179,7 +188,7 @@
   .row1-col1 > img:nth-child(1) {
     margin-right: 0;
   }
-  
+
   .row1-col1 > img:nth-child(2) {
     margin-left: 0;
   }
@@ -268,7 +277,8 @@
     margin-right: 0;
   }
 
-  .row2-col1, .row2-col2 {
+  .row2-col1,
+  .row2-col2 {
     margin: 0;
   }
 }

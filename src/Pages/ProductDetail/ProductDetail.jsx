@@ -39,18 +39,20 @@ const Review = ({ props }) => {
   );
 };
 
-const ReviewContainer = (props) => {
+const ReviewContainer = ({ review }) => {
   return (
     <div className="reviews-container">
-      <p>{props.user}</p>
+      <p>{review.userName}</p>
       <div className="reviews-rating">
-        {[...Array(Number(props.rating))].map((_e, i) => (
+        {[...Array(Number(review.rating))].map((_e, i) => (
           <AiFillStar key={i} color="gold" size={15} />
         ))}
       </div>
-      <p style={{ fontWeight: "normal" }}>{props.date}</p>
+      <p style={{ fontWeight: "normal" }}>
+        {review.createdAt.substring(0, 10)}
+      </p>
       <div className="reviews-comment">
-        <p>{props.comment}</p>
+        <p>{review.comment || ""}</p>
       </div>
     </div>
   );
@@ -61,7 +63,7 @@ const ProductDetail = () => {
   const productId = id;
 
   const dispatch = useDispatch();
-  const { product, loading, error } = useSelector((state) => state.product);
+  const { product, loading } = useSelector((state) => state.product);
   const { user } = useSelector((state) => state.user);
 
   const [count, setCount] = useState(1);
@@ -94,8 +96,6 @@ const ProductDetail = () => {
   };
 
   if (loading) return <Spinner loading={loading} />;
-
-  if (error) return <div>{error}</div>;
 
   return (
     <div className="productDetail">
@@ -134,24 +134,23 @@ const ProductDetail = () => {
         </div>
       </div>
       <div className="row2-detail">
-        <div className="row2-col1">
+        <div className="row2-col1" style={ product && product.reviews.length > 0 ? { justifyContent: 'space-between' } : { justifyContent: 'flex-start' }}>
           <p className="review-title">REVIEWS</p>
-          {[...Array(3)].map((_e, i) => (
-            <React.Fragment key={i}>
-              <ReviewContainer
-                user="Anirban"
-                rating="4"
-                date="2022-04-21"
-                comment="Nice product"
-              />
-              <br />
-            </React.Fragment>
-          ))}
+          {product?.reviews.length > 0 ? (
+            product.reviews.map((review, i) => (
+              <React.Fragment key={i}>
+                <ReviewContainer review={review} />
+                <br />
+              </React.Fragment>
+            ))
+          ) : (
+            <p className="NoReview">No reviews yet. Be the first one to leave a review</p>
+          )}
         </div>
         <div className="row2-col2">
           <p className="review-title">Write a Customer review</p>
           {user ? (
-            <WriteReview user={user} />
+            <WriteReview />
           ) : (
             <div className="review-container">
               <p>

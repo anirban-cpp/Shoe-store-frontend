@@ -20,7 +20,7 @@ const Product = (props) => {
         <div className="rating">
           <p>
             {props.rating} <AiFillStar color="gold" stroke="yellow" size={15} />{" "}
-            | {props.reviews.length > 0 ? props.reviews : "30"}
+            {/* | {props.reviews.length > 0 ? props.reviews : "30"} */} { "30" }
           </p>
         </div>
         <p className="product-brand">{props.brand}</p>
