@@ -10,7 +10,7 @@ import {
   updateUserRequest,
 } from "../../Redux/Actions/UserActions";
 import getDate from "../../utils/getDate";
-import Validate from "../../utils/Validate";
+import Validate, { validateEmailAndUsername } from "../../utils/Validate";
 
 import "./Profile.css";
 
@@ -32,13 +32,13 @@ const InputRow = (props) => {
 };
 
 const Profile = () => {
-  window.scroll(0, 0);
   const [active, setActive] = useState(true);
   const dispatch = useDispatch();
   const { user, loading } = useSelector((state) => state.user);
   const date = getDate(user.createdAt);
 
   useEffect(() => {
+    window.scroll(0, 0);
     dispatch(getUserRequest(user._id));
   }, []);
 
@@ -51,13 +51,14 @@ const Profile = () => {
 
   const handleSubmit = () => {
     if (
-      inputValue.name.trim() !== user.name ||
-      inputValue.email.trim() !== user.email ||
+      inputValue.name.trim() !== user.name.trim() ||
+      inputValue.email.trim() !== user.email.trim() ||
       inputValue.password.trim().length > 0
     ) {
-      const isValid = Validate({ ...inputValue });
-      if (isValid.valid) {
-        if (inputValue.password.trim() !== "") {
+      let isValid;
+      if (inputValue.password.trim() !== "") {
+        isValid = Validate({ ...inputValue });
+        if (isValid.valid) {
           dispatch(
             updateUserRequest({
               id: user._id,
@@ -67,6 +68,14 @@ const Profile = () => {
             })
           );
         } else {
+          toast.error(isValid.message);
+        }
+      } else {
+        isValid = validateEmailAndUsername({
+          name: inputValue.name,
+          email: inputValue.email,
+        });
+        if (isValid.valid) {
           dispatch(
             updateUserRequest({
               id: user._id,
@@ -74,10 +83,16 @@ const Profile = () => {
               email: inputValue.email,
             })
           );
+        } else {
+          toast.error(isValid.message);
         }
-        dispatch(getUserRequest(user._id));
+      }
+      if (isValid.valid) dispatch(getUserRequest(user._id));
+    } else {
+      if (inputValue.confirmpassword.trim().length > 0) {
+        toast.info("Please change password first 😓");
       } else {
-        toast.error(isValid.message);
+        toast.info("No changes detected 🤨");
       }
     }
   };

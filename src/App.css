@@ -13,7 +13,7 @@
 
 /* React Toastify */
 
-.Toastify__toast--success, .Toastify__toast--error {
+.Toastify__toast--success, .Toastify__toast--error, .Toastify__toast--info {
   font-size: 1rem !important;
 }
 

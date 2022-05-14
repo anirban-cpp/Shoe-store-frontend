@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillStar } from "react-icons/ai";
 import { getProductRequest } from "../../Redux/Actions/ProductActions";
@@ -59,6 +59,7 @@ const ReviewContainer = ({ review }) => {
 };
 
 const ProductDetail = () => {
+  const location = useLocation();
   const { id } = useParams();
   const productId = id;
 
@@ -156,7 +157,7 @@ const ProductDetail = () => {
               <p>
                 Please{" "}
                 <strong>
-                  " <Link to="/login">Login</Link> "
+                  " <Link to="/login" state={{ path: location.pathname }}>Login</Link> "
                 </strong>{" "}
                 to write a review
               </p>

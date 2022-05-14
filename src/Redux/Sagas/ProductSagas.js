@@ -38,7 +38,6 @@ function* onLoadProductAsync(action) {
     if (response.status === 200) {
       yield delay(500);
       yield put(getProductSuccess(response.data));
-      console.log("success product fetch");
     }
   } catch (e) {
     yield put(getProductFailure(e.response.data));
@@ -66,7 +65,6 @@ function* onAddReviewAsync(action) {
       yield delay(500);
       yield put(addProductreviewSuccess());
       yield put(getProductRequest(review.id));
-      console.log("Success review");
       toast.success("Review added");
     } else {
       yield delay(500);

@@ -10,7 +10,11 @@ const EmptyCart = (props) => {
       <br />
       <div className="empty-cart-container">
         <p>{props.text}</p>
-        <button onClick={() => navigate(props.path)}>{props.btntext}</button>
+        <button
+          onClick={() => navigate(props.path, { state: { path: "/cart" } })}
+        >
+          {props.btntext}
+        </button>
       </div>
     </div>
   );

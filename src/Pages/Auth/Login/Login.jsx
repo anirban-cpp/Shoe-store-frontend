@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "../Auth.css";
@@ -8,6 +8,7 @@ import { loginRequest } from "../../../Redux/Actions/UserActions";
 
 const Login = () => {
   window.scroll(0, 0);
+  const location = useLocation();
   const dispatch = useDispatch();
   const { user, loading } = useSelector((state) => state.user);
   const [formValue, setFormValue] = useState({
@@ -31,7 +32,7 @@ const Login = () => {
   if (loading) return <Spinner loading={loading} />;
 
   if (user) {
-    return <Navigate to="/" />;
+    return <Navigate to={location.state ? location.state.path : "/"} />;
   }
 
   return (
