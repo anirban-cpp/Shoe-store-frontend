@@ -16,7 +16,7 @@ const getDate = (date) => {
   ];
   const entries = date.toString().substring(0, 10).split("-");
   return (
-    months[parseInt(entries[1], 10)] + " " + entries[2] + " ," + entries[0]
+    months[parseInt(entries[1], 10)] + " " + entries[2] + ", " + entries[0]
   );
 };
 

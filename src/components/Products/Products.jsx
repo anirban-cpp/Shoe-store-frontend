@@ -11,6 +11,7 @@ import {
   getProductPaginationRequest,
   removePaginationproduct,
 } from "../../Redux/Actions/paginatedProductAction";
+import QueryNotFound from "../../Pages/NotFound/QueryNotFound";
 
 const Products = ({ keyword }) => {
   const [page, setPage] = useState(1);
@@ -35,7 +36,7 @@ const Products = ({ keyword }) => {
     } else if (page > 3) {
       setPage(1);
       dispatch(removePaginationproduct());
-      window.scroll(0,0)
+      window.scroll(0, 0);
     }
   }, [page]);
 
@@ -44,9 +45,11 @@ const Products = ({ keyword }) => {
   return (
     <div className="products">
       <div className="products-container">
-        {products?.map((product) => (
-          <Product key={product.id} {...product} />
-        ))}
+        {products?.length > 0 ? (
+          products.map((product) => <Product key={product.id} {...product} />)
+        ) : (
+          <QueryNotFound keyword={keyword} />
+        )}
       </div>
       {!keyword && (
         <div className="products-container">

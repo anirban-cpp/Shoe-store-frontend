@@ -1,0 +1,49 @@
+.notfound-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.notfound-container > p {
+    font-size: 1.5rem;
+}
+
+.notfound-container > img {
+    width: 400px;
+    height: 100%;
+    object-fit: contain;
+    margin: 3rem 1rem;
+}
+
+.notfound-container > button {
+    width: 30%;
+    padding: 0.5rem 0;
+    border: none;
+    color: #fff;
+    background-color: #198754;
+    font-size: 1rem;
+    font-family: cursive;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all linear 250ms;
+}
+
+.notfound-container > button:hover {
+    background-color: #18764a;
+}
+
+@media (max-width: 768px) {
+    .notfound-container > button {
+        width: calc(100% - 4rem);
+    }
+}
+
+@media (max-width: 426px) {
+    .notfound-container > img {
+        width: 250px;
+    }
+}

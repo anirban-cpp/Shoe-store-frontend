@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./Pages/Profile/Profile";
 import Headermedia from "./components/Header/Header-media";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>
   );
