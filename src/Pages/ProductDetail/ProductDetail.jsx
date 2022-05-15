@@ -45,7 +45,7 @@ const ReviewContainer = ({ review }) => {
     <div className="reviews-container">
       <p>{review.userName}</p>
       <div className="reviews-rating">
-        {[...Array(Number(review.rating))].map((_e, i) => (
+        {[...Array(parseInt(review.rating, 10))].map((_e, i) => (
           <AiFillStar key={i} color="gold" size={15} />
         ))}
       </div>

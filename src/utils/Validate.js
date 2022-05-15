@@ -55,7 +55,7 @@ const Validate = (formValue) => {
 
   if (
     !password.match(
-      "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$"
+      "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*_])[a-zA-Z0-9!@#$%^&*_]{8,20}$"
     )
   ) {
     // password not valid
