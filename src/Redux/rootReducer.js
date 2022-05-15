@@ -4,7 +4,7 @@ import { paginatedProductListRequest } from "./Reducers/paginatedProductReducer"
 import {
   productListRequest,
   productRequest,
-  // productReview,
+  productReview,
 } from "./Reducers/ProductReducer";
 import { userReducer } from "./Reducers/UserReducer";
 
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   productList: productListRequest,
   product: productRequest,
-  // review: productReview,
+  review: productReview,
   cart: cartReducer,
   paginatedproduct: paginatedProductListRequest,
 });

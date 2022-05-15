@@ -1,5 +1,5 @@
 import React from "react";
-import { contacts } from "../../Data";
+import { contacts } from "../../../Data";
 import Column from "./Column";
 
 import "./Contact.css";
@@ -16,4 +16,4 @@ const Contact = () => {
   );
 };
 
-export default React.memo(Contact);
+export default Contact;

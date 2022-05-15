@@ -1,14 +1,14 @@
 import React from "react";
 
-import logo from "../../assets/logo.png";
+import logo from "../../../assets/logo.png";
 import Search from "./Search";
 import { IoMdCart } from "react-icons/io";
 
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../Redux/Actions/UserActions";
-import { EmptyCart } from "../../Redux/Actions/CartActions";
+import { logout } from "../../../Redux/Actions/UserActions";
+import { EmptyCart } from "../../../Redux/Actions/CartActions";
 
 const Headermedia = () => {
   const navigate = useNavigate();

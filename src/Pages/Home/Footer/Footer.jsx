@@ -1,5 +1,5 @@
 import React from "react";
-import { cards } from "../../Data";
+import { cards } from "../../../Data";
 
 import "./Footer.css";
 
@@ -15,4 +15,4 @@ const Footer = () => {
   );
 };
 
-export default React.memo(Footer);
+export default Footer;

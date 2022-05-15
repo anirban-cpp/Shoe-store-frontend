@@ -2,7 +2,7 @@ import React from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { addToCart, clearCart, removeFromCart } from "../../Redux/Actions/CartActions";
+import { addToCart, clearCart, removeFromCart } from "../../../Redux/Actions/CartActions";
 import CartItemMedia from "./CartItemMedia";
 
 export const Button = ({ props }) => {

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Product from "../Product/Product";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../../../components/Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import "./Products.css";
 import {
   getProductListRequest,
   getqueriedProductRequest,
-} from "../../Redux/Actions/ProductActions";
+} from "../../../Redux/Actions/ProductActions";
 import {
   getProductPaginationRequest,
   removePaginationproduct,
-} from "../../Redux/Actions/paginatedProductAction";
-import QueryNotFound from "../../Pages/NotFound/QueryNotFound";
+} from "../../../Redux/Actions/paginatedProductAction";
+import QueryNotFound from "../../NotFound/QueryNotFound";
 
 const Products = ({ keyword }) => {
   const [page, setPage] = useState(1);

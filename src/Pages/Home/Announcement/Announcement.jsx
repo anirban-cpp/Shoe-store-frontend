@@ -19,4 +19,4 @@ const Announcement = () => {
   )
 }
 
-export default React.memo(Announcement)
+export default Announcement

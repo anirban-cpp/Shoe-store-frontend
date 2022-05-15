@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   addProductreviewRequest,
-  getProductRequest,
-} from "../../Redux/Actions/ProductActions";
+  // getProductRequest,
+} from "../../../Redux/Actions/ProductActions";
 
 import "./WriteReview.css";
 
