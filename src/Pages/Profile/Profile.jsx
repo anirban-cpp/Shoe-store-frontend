@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import userImg from "../../assets/user-img.png";
@@ -36,6 +36,8 @@ const Profile = () => {
   const dispatch = useDispatch();
   const { user, loading } = useSelector((state) => state.user);
   const date = getDate(user.createdAt);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -131,7 +133,10 @@ const Profile = () => {
             </span>
             <span
               className={!active ? "active" : ""}
-              onClick={() => setActive(false)}
+              onClick={() => {
+                setActive(false);
+                navigate(`/${user?._id}/orders`);
+              }}
             >
               Orders
             </span>

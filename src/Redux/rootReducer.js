@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { cartReducer } from "./Reducers/CartReducer";
+import { getordersReducer, orderReducer } from "./Reducers/OrderReducer";
 import { paginatedProductListRequest } from "./Reducers/paginatedProductReducer";
 import {
   productListRequest,
@@ -15,6 +16,8 @@ const rootReducer = combineReducers({
   review: productReview,
   cart: cartReducer,
   paginatedproduct: paginatedProductListRequest,
+  order: orderReducer,
+  getorder: getordersReducer,
 });
 
 export default rootReducer;

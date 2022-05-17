@@ -34,7 +34,7 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         loading: false,
-        error: ""
+        error: "",
       };
     case USER_LOGIN_FAILURE:
       return {
@@ -62,14 +62,14 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         loading: false,
-        error: ""
+        error: "",
       };
     case USER_REGISTER_FAILURE:
       return {
         ...state,
         error: action.payload,
         loading: false,
-        user: null
+        user: null,
       };
     case USER_DETAILS_REQUEST:
       return {
@@ -82,14 +82,14 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         loading: false,
-        error: ""
+        error: "",
       };
     case USER_DETAILS_FAILURE:
       return {
         ...state,
         error: action.payload,
         loading: false,
-        user: null
+        user: null,
       };
     case USER_UPDATE_REQUEST:
       return {
@@ -102,14 +102,14 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         loading: false,
-        error: ""
+        error: "",
       };
     case USER_UPDATE_FAILURE:
       return {
         ...state,
         error: action.payload,
         loading: false,
-        user: null
+        user: null,
       };
     default:
       return state;

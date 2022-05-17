@@ -73,7 +73,8 @@ function* onupdateUserStartAsync(action) {
     if (response.status === 200) {
       yield delay(500);
       yield put(updateUserSuccess(response.data));
-      toast.success("Profile updated successfully 😄");
+      if (!("shippingAddress" in payload))
+        toast.success("Profile updated successfully 😄");
     }
   } catch (e) {
     yield put(updateUserFailure(e.response.data));

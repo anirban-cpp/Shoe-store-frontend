@@ -1,15 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+// import Spinner from "../../../components/Spinner/Spinner";
 import CartItem from "./CartItem";
 
 import "./CartItems.css";
 
 const CartItems = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { user } = useSelector((state) => state.user);
   const { cartItems, total } = useSelector((state) => state.cart);
+
+  const handleCheckout = () => {
+    if (user && cartItems?.length > 0) {
+      navigate('/shipping')
+    } else {
+      navigate("/login", { state: { path: location.pathname } });
+    }
+  };
 
   return (
     <div className="cart-items-container">
@@ -31,7 +41,10 @@ const CartItems = () => {
         >
           Continue Shopping
         </button>
-        <button style={{ color: "white", backgroundColor: "#1cb803" }}>
+        <button
+          style={{ color: "white", backgroundColor: "#1cb803" }}
+          onClick={handleCheckout}
+        >
           Checkout
         </button>
       </div>
