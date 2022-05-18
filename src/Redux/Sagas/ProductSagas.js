@@ -40,7 +40,7 @@ function* onLoadProductAsync(action) {
       yield put(getProductSuccess(response.data));
     }
   } catch (e) {
-    yield put(getProductFailure(e.response.data));
+    yield put(getProductFailure(e.response.data.message));
   }
 }
 

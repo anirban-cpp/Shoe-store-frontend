@@ -58,12 +58,14 @@ export const productRequest = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        error: "",
       };
     case PRODUCT_SUCCESS:
       return {
         ...state,
         product: action.payload,
         loading: false,
+        error: "",
       };
     case PRODUCT_FAILURE:
       return {

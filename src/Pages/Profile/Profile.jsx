@@ -35,13 +35,13 @@ const Profile = () => {
   const [active, setActive] = useState(true);
   const dispatch = useDispatch();
   const { user, loading } = useSelector((state) => state.user);
-  const date = getDate(user.createdAt);
+  const date = user ? getDate(user?.createdAt) : "";
 
   const navigate = useNavigate();
 
   useEffect(() => {
     window.scroll(0, 0);
-    dispatch(getUserRequest(user._id));
+    dispatch(getUserRequest(user?._id));
   }, []);
 
   const [inputValue, setInputValue] = useState({
@@ -53,8 +53,8 @@ const Profile = () => {
 
   const handleSubmit = () => {
     if (
-      inputValue.name.trim() !== user.name.trim() ||
-      inputValue.email.trim() !== user.email.trim() ||
+      inputValue.name.trim() !== user?.name.trim() ||
+      inputValue.email.trim() !== user?.email.trim() ||
       inputValue.password.trim().length > 0
     ) {
       let isValid;
@@ -80,7 +80,7 @@ const Profile = () => {
         if (isValid.valid) {
           dispatch(
             updateUserRequest({
-              id: user._id,
+              id: user?._id,
               name: inputValue.name,
               email: inputValue.email,
             })
@@ -89,7 +89,7 @@ const Profile = () => {
           toast.error(isValid.message);
         }
       }
-      if (isValid.valid) dispatch(getUserRequest(user._id));
+      if (isValid.valid) dispatch(getUserRequest(user?._id));
     } else {
       if (inputValue.confirmpassword.trim().length > 0) {
         toast.info("Please change password first 😓");
@@ -102,6 +102,7 @@ const Profile = () => {
   if (!user) {
     return <Navigate to="/login" />;
   }
+
   if (loading) {
     return <Spinner loading={loading} />;
   }
