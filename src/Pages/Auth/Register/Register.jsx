@@ -85,7 +85,7 @@ const Register = () => {
             onChange={handleInput}
             required
           />
-          <button>Register</button>
+          <button onClick={handleSubmit}>Register</button>
         </form>
         <p className="others" onClick={() => navigate("/login")}>
           Already have an account? Login

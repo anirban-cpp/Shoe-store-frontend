@@ -4,11 +4,13 @@ import { EmptyCart } from "../Actions/CartActions";
 import {
   createOrderFailure,
   createOrderSuccess,
+  getFilteredUserOrdersFailure,
+  getFilteredUserOrdersSuccess,
   getUserOrdersFailure,
   getUserOrdersSuccess,
 } from "../Actions/OrderActions";
 import * as types from "../ActionTypes/OrderActionsTypes";
-import { createOrderApi, getUserOrdersApi } from "../api/Ordersapi";
+import { createOrderApi, getUserFilterOrdersApi, getUserOrdersApi } from "../api/Ordersapi";
 
 function* onCreateOrderAsync(action) {
   const { payload } = action; // order
@@ -31,10 +33,25 @@ function* onFetchOrdersAsync(action) {
   try {
     const response = yield call(getUserOrdersApi, payload);
     if (response.status === 200) {
+      yield delay(500);
       yield put(getUserOrdersSuccess(response.data));
     }
   } catch (err) {
     yield put(getUserOrdersFailure(err.response.data));
+  }
+}
+
+function* onFetchFilteredOrdersAsync(action) {
+  const { payload } = action;
+
+  try {
+    const response = yield call(getUserFilterOrdersApi, payload);
+    if (response.status === 200) {
+      yield delay(500);
+      yield put(getFilteredUserOrdersSuccess(response.data));
+    }
+  } catch (err) {
+    yield put(getFilteredUserOrdersFailure(err.response.data));
   }
 }
 
@@ -50,4 +67,8 @@ function* onFetchOrders() {
   yield takeLatest(types.USER_ORDERS_REQUEST, onFetchOrdersAsync);
 }
 
-export const orderSagas = [fork(onCreateOrder), fork(onFetchOrders)];
+function* onFetchFilteredOrders() {
+  yield takeLatest(types.USER_FILTER_ORDERS_REQUEST, onFetchFilteredOrdersAsync);
+}
+
+export const orderSagas = [fork(onCreateOrder), fork(onFetchOrders), fork(onFetchFilteredOrders)];

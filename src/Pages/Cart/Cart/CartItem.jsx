@@ -70,7 +70,7 @@ const CartItem = ({ props }) => {
       </div>
       <div className="sub-total">
         <p>Subtotal</p>
-        <p>₹ {Number(props.price) * Number(props.quantity)}</p>
+        <p style={{ marginTop: "0" }}>₹ {Number(props.price) * Number(props.quantity)}</p>
       </div>
     </div>
   );

@@ -29,3 +29,5 @@ export const contacts = [
 ];
 
 export const cards = [master, visa, paypal, amex, discover];
+
+export const order_status_types = ["confirmed", "delivered", "cancelled"]

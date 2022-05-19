@@ -47,12 +47,14 @@ export const orderReducer = (state = initialState, action) => {
 export const getordersReducer = (state = orderedInitialState, action) => {
   switch (action.type) {
     case types.USER_ORDERS_REQUEST:
+    case types.USER_FILTER_ORDERS_REQUEST:
       return {
         ...state,
         loading: true,
         error: "",
       };
     case types.USER_ORDERS_SUCCESS:
+    case types.USER_FILTER_ORDERS_SUCCESS:
       return {
         ...state,
         orderedItems: action.payload,
@@ -60,6 +62,7 @@ export const getordersReducer = (state = orderedInitialState, action) => {
         error: "",
       };
     case types.USER_ORDERS_FAILURE:
+    case types.USER_FILTER_ORDERS_FAILURE:
       return {
         ...state,
         error: action.payload,

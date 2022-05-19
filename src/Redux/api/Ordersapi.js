@@ -9,4 +9,9 @@ export const createOrderApi = async (order) =>
 
 export const getUserOrdersApi = async (userId) => {
   return await axios.get(`http://localhost:1000/api/orders/user/${userId}`);
-}
+};
+
+export const getUserFilterOrdersApi = async (payload) =>
+  await axios.get(
+    `http://localhost:1000/api/orders/user/${payload.id}/filtered?order=${payload.order}&status=${payload.status}`
+  );

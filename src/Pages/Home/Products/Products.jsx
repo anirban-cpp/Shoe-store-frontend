@@ -27,6 +27,7 @@ const Products = ({ keyword }) => {
       dispatch(getqueriedProductRequest(keyword));
     } else {
       dispatch(getProductListRequest());
+      dispatch(removePaginationproduct());
     }
   }, [keyword, dispatch]);
 
@@ -36,7 +37,7 @@ const Products = ({ keyword }) => {
     } else if (page > 3) {
       setPage(1);
       dispatch(removePaginationproduct());
-      window.scroll(0, 0);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [page]);
 

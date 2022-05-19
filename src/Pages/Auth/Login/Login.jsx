@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../Auth.css";
 import Spinner from "../../../components/Spinner/Spinner";
 import { loginRequest } from "../../../Redux/Actions/UserActions";
+import { toast } from "react-toastify";
 
 const Login = () => {
   window.scroll(0, 0);
@@ -25,8 +26,14 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginRequest({ ...formValue }));
-    setFormValue({ ...formValue, email: "", password: "" });
+    if (formValue.email.trim().length === 0)
+      toast.error("Please provide your email");
+    else if (formValue.password.trim().length === 0)
+      toast.error("Please provide your password");
+    else {
+      dispatch(loginRequest({ ...formValue }));
+      setFormValue({ ...formValue, email: "", password: "" });
+    }
   };
 
   if (loading) return <Spinner loading={loading} />;
@@ -45,6 +52,7 @@ const Login = () => {
             placeholder="Email"
             value={formValue.email}
             onChange={handleInput}
+            required
           />
           <input
             name="password"
@@ -52,6 +60,7 @@ const Login = () => {
             placeholder="Password"
             value={formValue.password}
             onChange={handleInput}
+            required
           />
           <button type="submit" onClick={handleSubmit}>
             Login

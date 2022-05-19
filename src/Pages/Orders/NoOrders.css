@@ -1,0 +1,31 @@
+.no-orders {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-orders > p {
+  font-size: 1.5rem;
+}
+
+.no-orders > button {
+  padding: 0.7rem;
+  width: 150px;
+  border: none;
+  background-color: #1cb803;
+  color: white;
+  cursor: pointer;
+  -webkit-box-shadow: 5px 7px 18px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 7px 18px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 7px 18px -6px rgba(0, 0, 0, 0.75);
+  transition: all linear 250ms;
+}
+
+.no-orders > button:active {
+  transform: translateY(2px);
+  -webkit-box-shadow: 4px 4px 18px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 18px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 18px -6px rgba(0, 0, 0, 0.75);
+}

@@ -34,7 +34,7 @@ export const getUserOrdersRequest = (userId) => {
 export const getUserOrdersSuccess = (orders) => {
   return {
     type: types.USER_ORDERS_SUCCESS,
-    payload: orders
+    payload: orders,
   };
 };
 
@@ -85,6 +85,29 @@ export const payOrderSuccess = () => {
 export const payOrderFailure = (error) => {
   return {
     type: types.ORDER_PAY_FAILURE,
+    payload: error,
+  };
+};
+
+// get filtered-order details
+
+export const getFilteredUserOrdersRequest = (payload) => {
+  return {
+    type: types.USER_FILTER_ORDERS_REQUEST,
+    payload: payload,
+  };
+};
+
+export const getFilteredUserOrdersSuccess = (orders) => {
+  return {
+    type: types.USER_FILTER_ORDERS_SUCCESS,
+    payload: orders,
+  };
+};
+
+export const getFilteredUserOrdersFailure = (error) => {
+  return {
+    type: types.USER_FILTER_ORDERS_FAILURE,
     payload: error,
   };
 };

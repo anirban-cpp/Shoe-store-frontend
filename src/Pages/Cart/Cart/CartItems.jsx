@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-// import Spinner from "../../../components/Spinner/Spinner";
 import CartItem from "./CartItem";
 
 import "./CartItems.css";
