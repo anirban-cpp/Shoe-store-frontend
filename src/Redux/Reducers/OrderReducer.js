@@ -1,3 +1,4 @@
+import appendOrder from "../../utils/appendOrder";
 import * as types from "../ActionTypes/OrderActionsTypes";
 
 const initialState = {
@@ -15,7 +16,6 @@ export const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ORDER_CREATE_REQUEST:
     case types.ORDER_PAY_REQUEST:
-    case types.ORDER_CANCEL_REQUEST:
       return {
         ...state,
         loading: true,
@@ -23,7 +23,6 @@ export const orderReducer = (state = initialState, action) => {
       };
     case types.ORDER_CREATE_SUCCESS:
     case types.ORDER_PAY_SUCCESS:
-    case types.ORDER_CANCEL_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -31,7 +30,6 @@ export const orderReducer = (state = initialState, action) => {
       };
     case types.ORDER_CREATE_FAILURE:
     case types.ORDER_PAY_FAILURE:
-    case types.ORDER_CANCEL_FAILURE:
       return {
         ...state,
         error: action.payload,
@@ -48,6 +46,7 @@ export const getordersReducer = (state = orderedInitialState, action) => {
   switch (action.type) {
     case types.USER_ORDERS_REQUEST:
     case types.USER_FILTER_ORDERS_REQUEST:
+    case types.ORDER_CHANGE_REQUEST:
       return {
         ...state,
         loading: true,
@@ -61,8 +60,16 @@ export const getordersReducer = (state = orderedInitialState, action) => {
         loading: false,
         error: "",
       };
+    case types.ORDER_CHANGE_SUCCESS:
+      return {
+      ...state,
+      orderedItems: appendOrder(state.orderedItems, action.payload),
+      loading: false,
+      error: "",
+    };
     case types.USER_ORDERS_FAILURE:
     case types.USER_FILTER_ORDERS_FAILURE:
+    case types.ORDER_CHANGE_FAILURE:
       return {
         ...state,
         error: action.payload,

@@ -46,7 +46,9 @@ const Orders = () => {
 
   if (!user) return <Navigate to="/login" state={{ path: "/profile" }} />;
 
-  if (error) return <div>{error}</div>;
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <div className="orders">
@@ -121,8 +123,8 @@ const Orders = () => {
                   <OrderItem
                     key={i}
                     data={e}
-                    isDelivered={item.isDelivered}
-                    createdAt={item.createdAt}
+                    orderId={item._id}
+                    updatedAt={item.updatedAt}
                     address={item.shippingAddress}
                   />
                 ))}

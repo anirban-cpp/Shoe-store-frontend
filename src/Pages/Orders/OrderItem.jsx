@@ -1,21 +1,45 @@
 import React from "react";
 
 import { GoPackage } from "react-icons/go";
+import { MdCancel } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { changeOrderRequest } from "../../Redux/Actions/OrderActions";
 import getDate from "../../utils/getDate";
+import delivered from "../../assets/confirmed.svg";
 
-const OrderItem = ({ createdAt, data, isDelivered, address }) => {
-  const date = getDate(createdAt);
+const OrderItem = ({ orderId, updatedAt, data, address }) => {
+  const date = getDate(updatedAt);
+  const dispatch = useDispatch();
+
+  const handleClick = (status) => {
+    dispatch(
+      changeOrderRequest({
+        orderId: orderId,
+        status: status,
+        itemId: data._id,
+      })
+    );
+  };
 
   return (
     <div className="order-item">
       <div className="order-item-top">
         <div className="icon">
-          <GoPackage />
+          {data.status.toString().trim().toLowerCase() !== "cancelled" ? (
+            data.status.toString().trim().toLowerCase() === "delivered" ? (
+              <>
+                <GoPackage />
+                <img src={delivered} alt="" />
+              </>
+            ) : (
+              <GoPackage />
+            )
+          ) : (
+            <MdCancel />
+          )}
         </div>
         <div className="delivery-status">
-          <p className="status-title">
-            {isDelivered ? "Delivered" : "Order Confirmed"}
-          </p>
+          <p className="status-title">{`Order ${data.status}`}</p>
           <p className="status-date">On {date}</p>
         </div>
       </div>
@@ -37,12 +61,35 @@ const OrderItem = ({ createdAt, data, isDelivered, address }) => {
             </span>
           </div>
         </div>
-        <div className="order-item-row2">
-          <button className="exchange">Exchange</button>
-          <button className="cancel">
-            Cancel Order
-          </button>
-        </div>
+        {data.status.toString().trim().toLowerCase() === "cancelled" ? (
+          <></>
+        ) : (
+          <div className="order-item-row2">
+            {data.status.toString().trim().toLowerCase() === "delivered" ? (
+              <button
+                style={{ backgroundColor: "black" }}
+                onClick={() => handleClick("Return Requested")}
+              >
+                Return
+              </button>
+            ) : data.status.toString().trim().toLowerCase() ===
+              "return requested" ? (
+              <button
+                style={{ backgroundColor: "black" }}
+                onClick={() => handleClick("Delivered")}
+              >
+                Cancel Return
+              </button>
+            ) : (
+              <button
+                style={{ backgroundColor: "#1cb803" }}
+                onClick={() => handleClick("Cancelled")}
+              >
+                Cancel Order
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

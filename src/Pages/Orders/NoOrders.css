@@ -29,3 +29,24 @@
   -moz-box-shadow: 4px 4px 18px -6px rgba(0, 0, 0, 0.75);
   box-shadow: 4px 4px 18px -6px rgba(0, 0, 0, 0.75);
 }
+
+@media (max-width: 972px) {
+  .no-orders {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .no-orders > button {
+    padding: 0.5rem;
+  }
+
+  .no-orders > img {
+    width: 70px;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  .no-orders > p {
+    font-size: 1rem;
+  }
+}

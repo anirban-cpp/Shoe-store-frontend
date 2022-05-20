@@ -92,10 +92,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  float: 0.5;
   height: 32px;
   width: 32px;
   margin-left: 1rem;
+  position: relative;
 }
 
 .icon > svg {
@@ -105,6 +105,12 @@
   z-index: 99;
   padding: 0;
   margin: 0;
+}
+
+.icon > img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .order-item-top {
@@ -150,33 +156,20 @@
 }
 
 .order-item-row2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.exchange {
-  width: 200px;
+.order-item-row2 > button {
+  width: 400px;
   padding: 0.5rem;
   font-weight: bold;
   color: white;
-  background-color: black;
   border-radius: 0.5rem;
   cursor: pointer;
   outline: none;
   border: none;
-}
 
-.cancel {
-  width: 200px;
-  padding: 0.5rem;
-  font-weight: bold;
-  color: white;
-  background-color: #1cb803;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  outline: none;
-  border: none;
 }
 
 .order-item-details > span {

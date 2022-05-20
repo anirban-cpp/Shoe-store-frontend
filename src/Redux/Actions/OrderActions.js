@@ -47,22 +47,23 @@ export const getUserOrdersFailure = (error) => {
 
 // cancel order
 
-export const cancelOrderRequest = (orderId) => {
+export const changeOrderRequest = (payload) => {
   return {
-    type: types.ORDER_CANCEL_REQUEST,
-    payload: orderId,
+    type: types.ORDER_CHANGE_REQUEST,
+    payload: payload,
   };
 };
 
-export const cancelOrderSuccess = () => {
+export const changeOrderSuccess = (changedOrder) => {
   return {
-    type: types.ORDER_CANCEL_SUCCESS,
+    type: types.ORDER_CHANGE_SUCCESS,
+    payload: changedOrder
   };
 };
 
-export const cancelOrderFailure = (error) => {
+export const changeOrderFailure = (error) => {
   return {
-    type: types.ORDER_CANCEL_FAILURE,
+    type: types.ORDER_CHANGE_FAILURE,
     payload: error,
   };
 };

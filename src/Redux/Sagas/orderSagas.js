@@ -2,6 +2,8 @@ import { takeLatest, call, delay, put, fork } from "@redux-saga/core/effects";
 import { toast } from "react-toastify";
 import { EmptyCart } from "../Actions/CartActions";
 import {
+  changeOrderFailure,
+  changeOrderSuccess,
   createOrderFailure,
   createOrderSuccess,
   getFilteredUserOrdersFailure,
@@ -10,7 +12,12 @@ import {
   getUserOrdersSuccess,
 } from "../Actions/OrderActions";
 import * as types from "../ActionTypes/OrderActionsTypes";
-import { createOrderApi, getUserFilterOrdersApi, getUserOrdersApi } from "../api/Ordersapi";
+import {
+  changeOrderStatusApi,
+  createOrderApi,
+  getUserFilterOrdersApi,
+  getUserOrdersApi,
+} from "../api/Ordersapi";
 
 function* onCreateOrderAsync(action) {
   const { payload } = action; // order
@@ -55,6 +62,23 @@ function* onFetchFilteredOrdersAsync(action) {
   }
 }
 
+function* onFechChangeStatus(action) {
+  try {
+    const { payload } = action;
+    const response = yield call(changeOrderStatusApi, payload);
+    if (response.status === 200) {
+      yield delay(500);
+      yield put(changeOrderSuccess(response.data));
+      if (payload.status.trim().toLowerCase() === "cancelled")
+        toast.success("Order Cancelled ✌️");
+      else if (payload.status.trim().toLowerCase() === "return requested")
+        toast.success("Order Return Requested ✌️");
+    }
+  } catch (err) {
+    yield put(changeOrderFailure(err.response.data));
+  }
+}
+
 function* onCreateOrder() {
   yield takeLatest(types.ORDER_CREATE_REQUEST, onCreateOrderAsync);
 }
@@ -68,7 +92,19 @@ function* onFetchOrders() {
 }
 
 function* onFetchFilteredOrders() {
-  yield takeLatest(types.USER_FILTER_ORDERS_REQUEST, onFetchFilteredOrdersAsync);
+  yield takeLatest(
+    types.USER_FILTER_ORDERS_REQUEST,
+    onFetchFilteredOrdersAsync
+  );
 }
 
-export const orderSagas = [fork(onCreateOrder), fork(onFetchOrders), fork(onFetchFilteredOrders)];
+function* onChangeStatus() {
+  yield takeLatest(types.ORDER_CHANGE_REQUEST, onFechChangeStatus);
+}
+
+export const orderSagas = [
+  fork(onCreateOrder),
+  fork(onFetchOrders),
+  fork(onFetchFilteredOrders),
+  fork(onChangeStatus),
+];
