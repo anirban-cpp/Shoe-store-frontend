@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import userImg from "../../assets/user-img.png";
+import userImg from "../../assets/user-img.webp";
 import Spinner from "../../components/Spinner/Spinner";
 import {
   getUserRequest,

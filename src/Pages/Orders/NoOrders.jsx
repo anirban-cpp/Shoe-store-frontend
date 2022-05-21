@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import image from '../../assets/no-orders.jpg';
+import image from '../../assets/no-orders.webp';
 
 import './NoOrders.css';
 

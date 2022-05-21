@@ -1,6 +1,6 @@
 .banner {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.226)),
-    url("../../../assets/banner.jpg")
+    url("../../../assets/banner.webp")
       no-repeat scroll 50% / cover;
   background-position: center;
   padding: 100px 0;

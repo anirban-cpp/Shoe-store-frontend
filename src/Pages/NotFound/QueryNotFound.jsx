@@ -1,6 +1,6 @@
 import React from "react";
 
-import notfound from "../../assets/Search_not_found.png";
+import notfound from "../../assets/Search_not_found.webp";
 
 import "./QueryNotFound.css";
 

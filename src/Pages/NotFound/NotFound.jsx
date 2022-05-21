@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import notfound from '../../assets/NotFound.png'
+import notfound from '../../assets/NotFound.webp'
 
 import './NotFound.css';
 
