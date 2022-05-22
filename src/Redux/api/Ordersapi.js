@@ -1,26 +1,23 @@
-import axios from "axios";
+import { orderaxios } from "../../AxiosInstance/axiosinstance";
 
 export const createOrderApi = async (order) =>
-  await axios.post(`http://localhost:1000/api/orders`, order, {
+  await orderaxios.post(`/`, order, {
     headers: {
       "Content-Type": "application/json",
     },
   });
 
 export const getUserOrdersApi = async (userId) => {
-  return await axios.get(`http://localhost:1000/api/orders/user/${userId}`);
+  return await orderaxios.get(`/user/${userId}`);
 };
 
 export const getUserFilterOrdersApi = async (payload) =>
-  await axios.get(
-    `http://localhost:1000/api/orders/user/${payload.id}/filtered?order=${payload.order}&status=${payload.status}`
+  await orderaxios.get(
+    `/user/${payload.id}/filtered?order=${payload.order}&status=${payload.status}`
   );
 
 export const changeOrderStatusApi = async (payload) =>
-  await axios.put(
-    `http://localhost:1000/api/orders/${payload.orderId}/change`,
-    {
-      itemId: payload.itemId,
-      status: payload.status,
-    }
-  );
+  await orderaxios.put(`/${payload.orderId}/change`, {
+    itemId: payload.itemId,
+    status: payload.status,
+  });

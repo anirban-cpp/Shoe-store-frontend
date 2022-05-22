@@ -1,22 +1,17 @@
-import axios from "axios";
+import { authaxios } from "../../AxiosInstance/axiosinstance";
 
 export const RegisterUserApi = async (payload) =>
-  await axios.post(`http://localhost:1000/api/auth/register`, payload, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  await authaxios.post(`/register`, payload);
 
 export const LoginUserApi = async (payload) => {
-  return await axios.post(`http://localhost:1000/api/auth/login`, payload, {
+  return await authaxios.post(`/login`, payload, {
     headers: {
       "Content-Type": "application/json",
     },
   });
 };
 
-export const getUserApi = async (payload) =>
-  await axios.get(`http://localhost:1000/api/auth/${payload}`);
+export const getUserApi = async (payload) => await authaxios.get(`/${payload}`);
 
 export const updateUserApi = async (payload) =>
-  await axios.put(`http://localhost:1000/api/auth/${payload.id}`, payload);
+  await authaxios.put(`/${payload.id}`, payload);

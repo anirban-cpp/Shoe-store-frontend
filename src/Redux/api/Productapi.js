@@ -1,24 +1,21 @@
-import axios from "axios";
+import { productaxios } from "../../AxiosInstance/axiosinstance";
 
 export const loadProductsApi = async () =>
-  await axios.get("http://localhost:1000/api/products/paginated?page=1");
+  await productaxios.get("/paginated?page=1");
 
 export const loadProductApi = async (productId) =>
-  axios.get(`http://localhost:1000/api/products/${productId}`);
+  productaxios.get(`/${productId}`);
 
 export const loadQueriedProductsApi = async (keyword) =>
-  axios.get(`http://localhost:1000/api/products/?keyword=${keyword}`);
+  productaxios.get(`/?keyword=${keyword}`);
 
 export const loadPaginatedProductsApi = async (page) =>
-  axios.get(`http://localhost:1000/api/products/paginated?page=${page}`);
+  productaxios.get(`/paginated?page=${page}`);
 
 export const addProductReviewApi = async (review) =>
-  axios.post(
-    `http://localhost:1000/api/products/${review.id.toString()}/review`,
-    {
-      name: review.name,
-      userId: review.userId,
-      rating: review.rating,
-      comment: review.comment,
-    }
-  );
+  productaxios.post(`/${review.id.toString()}/review`, {
+    name: review.name,
+    userId: review.userId,
+    rating: review.rating,
+    comment: review.comment,
+  });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -17,7 +17,12 @@ const Login = () => {
     password: "",
   });
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   const navigate = useNavigate();
+  const inputRef = useRef();
 
   const handleInput = (e) => {
     let { name, value } = e.target;
@@ -53,6 +58,7 @@ const Login = () => {
             value={formValue.email}
             onChange={handleInput}
             required
+            ref={inputRef}
           />
           <input
             name="password"

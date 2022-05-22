@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -20,6 +20,11 @@ const Register = () => {
   });
 
   const navigate = useNavigate();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleInput = (e) => {
     let { name, value } = e.target;
@@ -59,6 +64,7 @@ const Register = () => {
             placeholder="Enter your name"
             value={formValue.name}
             onChange={handleInput}
+            ref={inputRef}
             required
           />
           <input
