@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 500px;
 }
 
 .auth-container > form > input {
@@ -49,11 +49,40 @@
   text-align: center;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 426px) {
+  .auth-container {
+    padding: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .auth-container > form > input {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    font-size: 0.7rem;
+    /* width: calc(100% - 1rem); */
+  }
+
+  .auth-container > form > button {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .others {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    width: 450px;
+  }
+}
+
+/* @media (max-width: 375px) {
   .auth-container > form > input {
     font-size: 0.9rem;
   }
-}
+} */
 
 @media (max-width: 560px) {
   .auth-container {

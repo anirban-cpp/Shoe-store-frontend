@@ -157,8 +157,35 @@
   }
 }
 
-@media (max-width: 375px) {
+/* @media (max-width: 375px) {
   .input-container {
     max-width: 60%;
+  }
+} */
+
+@media (max-width: 426px) {
+
+  .input-container {
+    width: 90%;
+    border-radius: 0.5rem;
+    border: 1px solid lightgray;
+    padding-right: 0;
+  }
+
+  .input-container > input {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    font-size: 0.8rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+
+  .input-container > svg {
+    margin: 0;
+    padding: 0 14px;
+  }
+
+  .search > button {
+    display: none;
   }
 }

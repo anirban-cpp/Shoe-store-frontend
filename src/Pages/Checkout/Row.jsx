@@ -11,7 +11,7 @@ const Row = ({ type, icon, qty }) => {
       ? user?.name.substring(0, user?.name.indexOf(" "))
       : type === 1
       ? `Shipping: ${user?.shippingAddress.country}`
-      : `Address: ${user?.shippingAddress.address}, ${user?.shippingAddress.city}, ${user?.shippingAddress.postalCode}`;
+      : `${user?.shippingAddress.address}, ${user?.shippingAddress.city}, ${user?.shippingAddress.postalCode}`;
   const detail_two =
     type === 0 ? user?.email : type === 1 ? `No of items: ${qty}` : "";
 
