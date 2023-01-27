@@ -35,7 +35,7 @@ const Review = ({ props }) => {
       <p>Rating</p>
       <p>
         {rating} <AiFillStar color="gold" stroke="yellow" size={15} /> |{" "}
-        {reviews.length} Reviews
+        {reviews?.length} Reviews
       </p>
     </div>
   );
@@ -141,7 +141,7 @@ const ProductDetail = () => {
         <div
           className="row2-col1"
           style={
-            product && product.reviews.length > 0
+            product && product.reviews?.length > 0
               ? { justifyContent: "space-between" }
               : { justifyContent: "flex-start" }
           }
